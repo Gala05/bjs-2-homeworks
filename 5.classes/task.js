@@ -97,46 +97,49 @@ class Library {
 }
 
 class Student {
-	constructor(name) {
-		this.name = name;
-		this.marks = {};
-	}
+  constructor(name) {
+    this.name = name;
+    this.marks = {};
+  }
 
   addMark(mark, subject) {
-		let object = {[subject]: [mark]};
-		if (mark < 2 || mark > 5) {
-			return null;
-		} 
-		if (this.marks.hasOwnProperty(subject)) {
-			let arr = Object.keys(this.marks);
-			for (const i of arr) {
-				if (i === subject) {
-					this.marks[subject].push(mark);
-				}			
-			}	
-		} else {
-			Object.assign(this.marks, object);
-			} 
-	}
-	
-  getAverageBySubject(subject) {
-		if (this.marks.hasOwnProperty(subject)) {
-			return this.marks[subject].reduce((acc, marks) => acc + marks / this.marks[subject].length, 0);
-		} else {
-			return 0;
-		}
-	}
-  
-	getAverage() {    
-		let arr = Object.keys(this.marks);
-		let summ = 0;
-    if (arr.length !== 0) {
-      for (const i of arr) {			
-        summ += this.getAverageBySubject(i);							
+    let object = { [subject]: [mark] };
+    if (mark < 2 || mark > 5) {
+      return null;
+    }
+    if (this.marks.hasOwnProperty(subject)) {
+      let arr = Object.keys(this.marks);
+      for (const i of arr) {
+        if (i === subject) {
+          this.marks[subject].push(mark);
+        }
       }
-      return summ / arr.length;	
+    } else {
+      Object.assign(this.marks, object);
+    }
+  }
+
+  getAverageBySubject(subject) {
+    if (this.marks.hasOwnProperty(subject)) {
+      return this.marks[subject].reduce(
+        (acc, marks) => acc + marks / this.marks[subject].length,
+        0
+      );
     } else {
       return 0;
-    }				
-	}
+    }
+  }
+
+  getAverage() {
+    let arr = Object.keys(this.marks);
+    let summ = 0;
+    if (arr.length !== 0) {
+      for (const i of arr) {
+        summ += this.getAverageBySubject(i);
+      }
+      return summ / arr.length;
+    } else {
+      return 0;
+    }
+  }
 }
