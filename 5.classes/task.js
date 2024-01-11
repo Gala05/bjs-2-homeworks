@@ -95,3 +95,7 @@ class Library {
     return null;
   }
 }
+
+class Student {
+
+}
